@@ -27,12 +27,12 @@ const SignUp=()=>{
         },
         mode:"onBlur"
     });
-    const onSubmit=async(data: SignUpFormData)=> {
-     try{
-      console.log(data)
-     }   catch(e){
-
-     }
+    const onSubmit = async (data: SignUpFormData) => {
+        try {
+            console.log(data);
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return(
