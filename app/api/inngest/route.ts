@@ -4,5 +4,5 @@ import {sendDailyNewsSummary, sendSignUpEmail} from "@/lib/inngest/functions";
 
 export const { GET, POST, PUT } = serve({
     client: inngest,
-    functions: [sendSignUpEmail],
+    functions: [sendSignUpEmail, sendDailyNewsSummary],
 })

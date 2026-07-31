@@ -71,6 +71,7 @@ declare global {
         id: string;
         name: string;
         email: string;
+        image?:string;
     };
 
     type Stock = {
@@ -214,6 +215,12 @@ declare global {
         alertType: 'upper' | 'lower';
         threshold: number;
         changePercent?: number;
+    };
+
+    type UserForNewsEmail = {
+        id: string;
+        name: string;
+        email: string;
     };
 }
 
