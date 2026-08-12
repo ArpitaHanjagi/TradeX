@@ -16,33 +16,41 @@ import {
 } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
+import { toast } from "sonner";
 import NavItems from "@/components/NavItems";
+import { signOutUser } from "@/lib/actions/auth.actions";
 
-const UserDropdown = () => {
+const UserDropdown = ({ user }: { user?: { name: string; email: string; image?: string | null } }) => {
     const router = useRouter();
 
-    const user = {
-        name: "John Doe",
-        email: "john@example.com",
-    };
+    const displayName = user?.name ?? "Trader";
+    const displayEmail = user?.email ?? "";
 
     const handleSignOut = async () => {
+        const result = await signOutUser();
+
+        if (!result.success) {
+            toast.error("Sign out failed", { description: result.error });
+            return;
+        }
+
         router.push("/sign-in");
+        router.refresh();
     };
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-3 text-gray-400 hover:text-yellow-500">
                 <Avatar className="h-8 w-8">
-                    <AvatarImage src="https://avatars.githubusercontent.com/u/153423955?s=280&v=4" />
+                    <AvatarImage src={user?.image ?? undefined} />
                     <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
-                        {user.name[0]}
+                        {displayName[0]}
                     </AvatarFallback>
                 </Avatar>
 
                 <div className="hidden md:flex flex-col items-start">
                     <span className="text-base font-medium text-gray-400">
-                        {user.name}
+                        {displayName}
                     </span>
                 </div>
             </DropdownMenuTrigger>
@@ -52,19 +60,19 @@ const UserDropdown = () => {
                     <DropdownMenuLabel>
                         <div className="flex relative items-center gap-3 py-2">
                             <Avatar className="h-10 w-10">
-                                <AvatarImage src="https://avatars.githubusercontent.com/u/153423955?s=280&v=4" />
+                                <AvatarImage src={user?.image ?? undefined} />
                                 <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
-                                    {user.name[0]}
+                                    {displayName[0]}
                                 </AvatarFallback>
                             </Avatar>
 
                             <div className="flex flex-col">
                                 <span className="text-base font-medium text-gray-400">
-                                    {user.name}
+                                    {displayName}
                                 </span>
 
                                 <span className="text-sm text-gray-500">
-                                    {user.email}
+                                    {displayEmail}
                                 </span>
                             </div>
                         </div>

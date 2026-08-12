@@ -2,6 +2,7 @@ export const NAV_ITEMS = [
     { href: '/', label: 'Dashboard' },
     { href: '/search', label: 'Search' },
     { href: '/watchlist', label: 'Watchlist' },
+    { href: '/news', label: 'News' },
 ];
 
 // Sign-up form select options
@@ -323,6 +324,19 @@ export const POPULAR_STOCK_SYMBOLS = [
     'GRAB',
     'SE',
 ];
+
+export const POPULAR_STOCK_NAMES: Record<string, string> = {
+    AAPL: 'Apple Inc',
+    MSFT: 'Microsoft Corporation',
+    GOOGL: 'Alphabet Inc',
+    AMZN: 'Amazon.com Inc',
+    TSLA: 'Tesla Inc',
+    META: 'Meta Platforms Inc',
+    NVDA: 'NVIDIA Corporation',
+    NFLX: 'Netflix Inc',
+    ORCL: 'Oracle Corporation',
+    CRM: 'Salesforce Inc',
+};
 
 export const NO_MARKET_NEWS =
     '<p class="mobile-text" style="margin:0 0 20px 0;font-size:16px;line-height:1.6;color:#4b5563;">No market news available today. Please check back tomorrow.</p>';

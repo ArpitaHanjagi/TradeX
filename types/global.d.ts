@@ -113,12 +113,26 @@ declare global {
 
     type QuoteData = {
         c?: number;
+        d?: number;
         dp?: number;
+        h?: number;
+        l?: number;
+        o?: number;
+        pc?: number;
     };
 
     type ProfileData = {
         name?: string;
+        ticker?: string;
+        exchange?: string;
+        finnhubIndustry?: string;
         marketCapitalization?: number;
+        shareOutstanding?: number;
+        logo?: string;
+        weburl?: string;
+        ipo?: string;
+        country?: string;
+        currency?: string;
     };
 
     type FinancialsData = {
@@ -166,15 +180,6 @@ declare global {
 
     type WatchlistNewsProps = {
         news?: MarketNewsArticle[];
-    };
-
-    type SearchCommandProps = {
-        open?: boolean;
-        setOpen?: (open: boolean) => void;
-        renderAs?: 'button' | 'text';
-        buttonLabel?: string;
-        buttonVariant?: 'primary' | 'secondary';
-        className?: string;
     };
 
     type AlertData = {

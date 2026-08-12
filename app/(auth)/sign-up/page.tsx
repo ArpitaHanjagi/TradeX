@@ -1,5 +1,7 @@
 "use client"
 import React from 'react'
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {useForm} from "react-hook-form";
 import InputField from "@/components/forms/InputField";
@@ -8,8 +10,11 @@ import {INVESTMENT_GOALS, PREFERRED_INDUSTRIES, RISK_TOLERANCE_OPTIONS} from "@/
 import {CountrySelectField} from "@/components/forms/CountrySelectField";
 import { Control } from "react-hook-form";
 import FooterLink from "@/components/forms/FooterLink";
+import { signUpWithEmail } from "@/lib/actions/auth.actions";
 
 const SignUp=()=>{
+    const router = useRouter();
+
     const {
         register,
         handleSubmit,
@@ -28,10 +33,15 @@ const SignUp=()=>{
         mode:"onBlur"
     });
     const onSubmit = async (data: SignUpFormData) => {
-        try {
-            console.log(data);
-        } catch (e) {
-            console.error(e);
+        const result = await signUpWithEmail(data);
+
+        if (result.success) {
+            router.push('/');
+            router.refresh();
+        } else {
+            toast.error('Sign up failed', {
+                description: result.error ?? 'Something went wrong. Please try again.',
+            });
         }
     }
 
